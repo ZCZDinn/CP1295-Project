@@ -1,7 +1,7 @@
 /**
  * notes.js - Note class definition and management
  * Contains the Note class and related functions for note manipulation
- */
+ */ 
 
 // Array of note colors
 const NOTE_COLORS = ['note-yellow', 'note-blue', 'note-green', 'note-pink'];

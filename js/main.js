@@ -1,7 +1,7 @@
 /**
  * main.js - Main entry point for QuickNotes application
  * Initializes the application and connects all the modules
- */
+ */ 
 
 import { Note, NoteManager } from './notes.js';
 import { initializeUI, renderAllNotes } from './ui.js';

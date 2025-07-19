@@ -1,7 +1,7 @@
 /**
  * ui.js - UI management and event handlers
  * Functions for handling the user interface elements and interactions
- */
+ */ 
 
 import { createNote } from './notes.js';
 import { saveNotes, exportNotesAsJson } from './storage.js';

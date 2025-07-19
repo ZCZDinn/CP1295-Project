@@ -4,12 +4,14 @@ A browser-based sticky note application that allows users to create, edit, move,
 
 ## Purpose
 
-QuickNotes is a compact single-page web app that lets users create, move, edit, and delete virtual sticky notes directly in the browser. The application demonstrates key web development concepts including DOM manipulation, custom objects, browser storage, asynchronous JavaScript, ES modules, and JSON handling.
+QuickNotes is a compact single-page web app that lets users create, add images to, move, edit, sort, and delete virtual sticky notes directly in the browser. The application demonstrates key web development concepts including DOM manipulation, custom objects, browser storage, asynchronous JavaScript, ES modules, and JSON handling.
 
 ## Features
 
-- Add colorful notes by typing text or double-clicking on the board
+- Add colorful notes by typing text (or double-clicking on the board), with a date and time stamp for creation date and time
+- A sort button to re-arrange notes based on their date and time stamp
 - Edit notes with inline textarea or modal
+- Add images to notes
 - Drag and drop notes around the board
 - Delete notes with a fade-out effect
 - Automatic saving to localStorage
@@ -37,7 +39,7 @@ QuickNotes is a compact single-page web app that lets users create, move, edit, 
 ## Getting Started
 
 1. Clone this repository
-2. Open index.html in your browser
+2. Open index.html in your browser (with LiveServer due to modules)
 3. Start creating notes!
 
 ## Development Timeline
