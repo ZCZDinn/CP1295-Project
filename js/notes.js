@@ -25,6 +25,7 @@ export class Note {
         this.x = x;
         this.y = y;
         this.color = color || this.getRandomColor();
+        this.imageDataUrl = imageDataUrl || null;
         this.element = null;
     }
 
@@ -62,6 +63,15 @@ export class Note {
         // Set content
         const contentElement = noteElement.querySelector('.note-content');
         contentElement.textContent = this.content;
+
+        // Set image if present
+        const imageElement = noteElement.querySelector('.note-image');
+        if (this.imageDataUrl) {
+            imageElement.src = this.imageDataUrl;
+            imageElement.style.display = '';
+        } else {
+            imageElement.style.display = 'none';
+        }
         
         // Store reference to the element
         this.element = noteElement;
@@ -106,7 +116,8 @@ export class Note {
             content: this.content,
             x: this.x,
             y: this.y,
-            color: this.color
+            color: this.color,
+            imageDataUrl: this.imageDataUrl || null
         };
     }
 
