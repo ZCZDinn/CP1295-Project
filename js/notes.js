@@ -107,6 +107,23 @@ export class Note {
     }
 
     /**
+     * Update the note's image
+     * @param {string} dataUrl - Data URL of the image
+     */
+    updateImage(dataUrl) {
+        this.imageDataUrl = dataUrl;
+        if (this.element) {
+            const imageElement = this.element.querySelector('.note-image');
+            if (dataUrl) {
+                imageElement.src = dataUrl;
+                imageElement.style.display = '';
+            } else {
+                imageElement.style.display = 'none';
+            }
+        }
+    }
+
+    /**
      * Convert note to plain object for storage
      * @returns {Object} Plain object representation of the note
      */
