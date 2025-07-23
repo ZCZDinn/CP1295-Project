@@ -117,7 +117,7 @@ export class Note {
             const imageElement = this.element.querySelector('.note-image');
             if (dataUrl) {
                 imageElement.src = dataUrl;
-                imageElement.style.display = '';
+                imageElement.style.display = 'block';
             } else {
                 imageElement.style.display = 'none';
             }
