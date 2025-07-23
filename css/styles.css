@@ -113,6 +113,13 @@ header {
     opacity: 1;
 }
 
+.note-image {
+    display: none; /* Hidden by default, shown when an image is attached */
+    max-width: 100%;
+    max-height: 100px;
+    margin-top: 4px;
+}
+
 .note-content {
     flex-grow: 1;
     outline: none;
