@@ -18,8 +18,9 @@ export class Note {
      * @param {number} options.x - X position on the board
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
+     * @param {string} options.imageDataUrl - Data URL for an image associated with the note
      */
-    constructor({ id = null, content = '', x = 0, y = 0, color = null }) {
+    constructor({ id = null, content = '', x = 0, y = 0, color = null, imageDataUrl = null }) {
         this.id = id || this.generateId();
         this.content = content;
         this.x = x;
