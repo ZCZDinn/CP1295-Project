@@ -19,14 +19,16 @@ export class Note {
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
      * @param {string} options.imageDataUrl - Data URL for an image associated with the note
+     * @param {string} options.createdAt - ISO string for creation date/time
      */
-    constructor({ id = null, content = '', x = 0, y = 0, color = null, imageDataUrl = null }) {
+    constructor({ id = null, content = '', x = 0, y = 0, color = null, imageDataUrl = null, createdAt = null }) {
         this.id = id || this.generateId();
         this.content = content;
         this.x = x;
         this.y = y;
         this.color = color || this.getRandomColor();
         this.imageDataUrl = imageDataUrl || null;
+        this.createdAt = createdAt || new Date().toISOString();
         this.element = null;
     }
 
@@ -72,6 +74,12 @@ export class Note {
             imageElement.style.display = '';
         } else {
             imageElement.style.display = 'none';
+        }
+
+        // Set timestamp
+        const timestampElement = noteElement.querySelector('.note-timestamp');
+        if (timestampElement && this.createdAt) {
+            timestampElement.textContent = this.formatTimestamp(this.createdAt);
         }
         
         // Store reference to the element
@@ -124,6 +132,17 @@ export class Note {
         }
     }
 
+    // Format ISO string to "YYYY-MM-DD HH:mm"
+    formatTimestamp(isoString) {
+        const date = new Date(isoString);
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const dd = String(date.getDate()).padStart(2, '0');
+        const hh = String(date.getHours()).padStart(2, '0');
+        const min = String(date.getMinutes()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd} ${hh}:${min}`;
+    }
+
     /**
      * Convert note to plain object for storage
      * @returns {Object} Plain object representation of the note
@@ -135,7 +154,8 @@ export class Note {
             x: this.x,
             y: this.y,
             color: this.color,
-            imageDataUrl: this.imageDataUrl || null
+            imageDataUrl: this.imageDataUrl || null,
+            createdAt: this.createdAt
         };
     }
 
