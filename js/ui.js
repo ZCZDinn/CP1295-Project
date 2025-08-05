@@ -13,6 +13,8 @@ import { saveNotes, exportNotesAsJson } from './storage.js';
 export function initializeUI(noteManager) {
     const noteBoard = document.getElementById('note-board');
     const exportBtn = document.getElementById('export-btn');
+    const sortAscBtn = document.getElementById('sort-asc-btn');
+    const sortDescBtn = document.getElementById('sort-desc-btn');
 
     // Double click on board to create a new note
     noteBoard.addEventListener('dblclick', (event) => {
@@ -25,6 +27,16 @@ export function initializeUI(noteManager) {
     // Export button click handler
     exportBtn.addEventListener('click', () => {
         exportNotes(noteManager);
+    });
+
+    // Sort Ascending
+    sortAscBtn.addEventListener('click', () => {
+        sortAndRepositionNotes(noteManager, 'asc');
+    });
+
+    // Sort Descending
+    sortDescBtn.addEventListener('click', () => {
+        sortAndRepositionNotes(noteManager, 'desc');
     });
 
     // Setup auto-save timer
@@ -72,6 +84,44 @@ export function createNewNote(x, y, noteManager) {
 }
 
 /**
+ * Sort notes by timestamp and re-render
+ * @param {NoteManager} noteManager 
+ * @param {'asc'|'desc'} direction 
+ */
+function sortAndRepositionNotes(noteManager, direction = 'asc') {
+    const notes = noteManager.getAllNotes().slice();
+    notes.sort((a, b) => {
+        const t1 = new Date(a.createdAt).getTime();
+        const t2 = new Date(b.createdAt).getTime();
+        return direction === 'asc' ? t1 - t2 : t2 - t1;
+    });
+
+    // Layout settings
+    const noteWidth = 200 + 24; // note width + gap
+    const noteHeight = 200 + 24; // note height + gap
+    const noteBoard = document.getElementById('note-board');
+    const boardRect = noteBoard.getBoundingClientRect();
+    const maxCols = Math.max(1, Math.floor((boardRect.width) / noteWidth));
+
+    // Remove all notes from the board
+    noteBoard.innerHTML = '';
+
+    // Re-add notes in sorted order and reposition them
+    notes.forEach((note, i) => {
+        const col = i % maxCols;
+        const row = Math.floor(i / maxCols);
+        const x = col * noteWidth;
+        const y = row * noteHeight;
+        note.updatePosition(x, y);
+
+        // Create or update the DOM element
+        const noteElement = note.createElement();
+        setupNoteEventListeners(noteElement, note, noteManager);
+        noteBoard.appendChild(noteElement);
+    });
+}
+
+/**
  * Set up event listeners for a note element
  * @param {HTMLElement} noteElement - The note DOM element
  * @param {Note} note - The note object
@@ -83,8 +133,6 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
     const deleteButton = noteElement.querySelector('.delete-btn');
     const quoteButton = noteElement.querySelector('.quote-btn');
     const imageButton = noteElement.querySelector('.image-btn');
-    const imageElement = noteElement.querySelector('.note-image');
-    
     
     // Track whether the note is being dragged
     let isDragging = false;
