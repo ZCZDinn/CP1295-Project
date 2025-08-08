@@ -1,7 +1,7 @@
 /**
  * ui.js - UI management and event handlers
  * Functions for handling the user interface elements and interactions
- */
+ */ 
 
 import { createNote } from './notes.js';
 import { saveNotes, exportNotesAsJson } from './storage.js';
@@ -82,6 +82,9 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
     const contentElement = noteElement.querySelector('.note-content');
     const deleteButton = noteElement.querySelector('.delete-btn');
     const quoteButton = noteElement.querySelector('.quote-btn');
+    const imageButton = noteElement.querySelector('.image-btn');
+    const imageElement = noteElement.querySelector('.note-image');
+    
     
     // Track whether the note is being dragged
     let isDragging = false;
@@ -113,6 +116,30 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
             // Display error in console
             console.error('Failed to fetch quote:', error);
         }
+    });
+
+    // Image button handler
+    imageButton.addEventListener('click', () => {
+        // Create a hidden file input
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.style.display = 'none';
+        document.body.appendChild(fileInput);
+
+        fileInput.addEventListener('change', (event) => {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    note.updateImage(e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+            document.body.removeChild(fileInput);
+        });
+
+        fileInput.click();
     });
     
     // Drag start

@@ -37,6 +37,18 @@ QuickNotes is a compact single‑page web app that lets users create, move, edit
 | 7 | ES‑module layout | Minimum files: main.js, ui.js, notes.js, storage.js. |
 | 8 | JSON export | "Export" button downloads my‑notes.json containing all notes. |
 
+## 3A. Add-On Requirements (What needs to be done in this project by coding)
+
+| # | New Feature | What you must build |
+| A | Images inside notes | Provide an icon (or drag-and-drop) so users can attach an image to a sticky note.
+• Store the image so it survives reloads (use a Data-URL in localStorage or a Blob in IndexedDB).
+• Scale it to fit neatly and keep the note’s text editable. |
+| B | Timestamp | Automatically stamp each note with its creation date-and-time (e.g., “2025-07-09 14:37”) and display it. Persist the timestamp with the note. |
+| C | Sort buttons |  Add **Ascending** and **Descending** buttons that reorder all notes by timestamp and re-render the board. |
+
+These enhancements are **required**; omitting any will reduce Functionality marks. Demonstrate each one in the narrated demo video (>=5min).
+
+
 ## 4. GitHub Workflow Requirement
 
 - Create a public repository before writing any code.

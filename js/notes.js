@@ -1,7 +1,7 @@
 /**
  * notes.js - Note class definition and management
  * Contains the Note class and related functions for note manipulation
- */
+ */ 
 
 // Array of note colors
 const NOTE_COLORS = ['note-yellow', 'note-blue', 'note-green', 'note-pink'];
@@ -18,13 +18,15 @@ export class Note {
      * @param {number} options.x - X position on the board
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
+     * @param {string} options.imageDataUrl - Data URL for an image associated with the note
      */
-    constructor({ id = null, content = '', x = 0, y = 0, color = null }) {
+    constructor({ id = null, content = '', x = 0, y = 0, color = null, imageDataUrl = null }) {
         this.id = id || this.generateId();
         this.content = content;
         this.x = x;
         this.y = y;
         this.color = color || this.getRandomColor();
+        this.imageDataUrl = imageDataUrl || null;
         this.element = null;
     }
 
@@ -62,6 +64,15 @@ export class Note {
         // Set content
         const contentElement = noteElement.querySelector('.note-content');
         contentElement.textContent = this.content;
+
+        // Set image if present
+        const imageElement = noteElement.querySelector('.note-image');
+        if (this.imageDataUrl) {
+            imageElement.src = this.imageDataUrl;
+            imageElement.style.display = '';
+        } else {
+            imageElement.style.display = 'none';
+        }
         
         // Store reference to the element
         this.element = noteElement;
@@ -97,6 +108,23 @@ export class Note {
     }
 
     /**
+     * Update the note's image
+     * @param {string} dataUrl - Data URL of the image
+     */
+    updateImage(dataUrl) {
+        this.imageDataUrl = dataUrl;
+        if (this.element) {
+            const imageElement = this.element.querySelector('.note-image');
+            if (dataUrl) {
+                imageElement.src = dataUrl;
+                imageElement.style.display = 'block';
+            } else {
+                imageElement.style.display = 'none';
+            }
+        }
+    }
+
+    /**
      * Convert note to plain object for storage
      * @returns {Object} Plain object representation of the note
      */
@@ -106,7 +134,8 @@ export class Note {
             content: this.content,
             x: this.x,
             y: this.y,
-            color: this.color
+            color: this.color,
+            imageDataUrl: this.imageDataUrl || null
         };
     }
 
