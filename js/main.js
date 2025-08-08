@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         savedNotes.forEach(noteData => {
             const note = new Note(noteData);
             noteManager.addNote(note);
-        });
+        }); 
         
         // Render the loaded notes
         renderAllNotes(noteManager);

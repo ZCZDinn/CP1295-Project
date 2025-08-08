@@ -141,7 +141,7 @@ export class Note {
         const hh = String(date.getHours()).padStart(2, '0');
         const min = String(date.getMinutes()).padStart(2, '0');
         return `${yyyy}-${mm}-${dd} ${hh}:${min}`;
-    }
+    } 
 
     /**
      * Convert note to plain object for storage

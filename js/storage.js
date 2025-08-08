@@ -19,7 +19,7 @@ export function saveNotes(notes) {
         console.error('Failed to save notes:', error);
         return false;
     }
-}
+} 
 
 /**
  * Load notes from localStorage

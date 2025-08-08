@@ -8,8 +8,8 @@ QuickNotes is a compact single-page web app that lets users create, add images t
 
 ## Features
 
-- Add colorful notes by typing text (or double-clicking on the board), with a date and time stamp for creation date and time
-- A sort button to re-arrange notes based on their date and time stamp
+- Add colorful notes by typing text (or double-clicking on the board), with a date and time stamp for note creation date and time
+- An "Acsending" and "Descending" sort button to re-arrange notes based on their date and time stamp
 - Edit notes with inline textarea or modal
 - Add images to notes
 - Drag and drop notes around the board

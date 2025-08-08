@@ -164,7 +164,7 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
             // Display error in console
             console.error('Failed to fetch quote:', error);
         }
-    });
+    }); 
 
     // Image button handler
     imageButton.addEventListener('click', () => {
