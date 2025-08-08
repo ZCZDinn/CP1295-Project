@@ -57,6 +57,22 @@ header {
     transform: translateY(-2px);
 }
 
+#sort-asc-btn, #sort-desc-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#sort-asc-btn:hover, #sort-desc-btn:hover {
+    background-color: #ecf0f1;
+    transform: translateY(-2px);
+}
+
 .instructions {
     font-size: 0.9rem;
     opacity: 0.9;
@@ -121,6 +137,14 @@ header {
     height: auto;
     margin-top: 4px;
     object-fit: contain;
+}
+
+.note-timestamp {
+    font-size: 0.75rem;
+    color: #555;
+    opacity: 0.7;
+    pointer-events: none;
+    margin-right: auto; /* Pushes timestamp to the left */
 }
 
 .note-content {
